@@ -1,0 +1,3 @@
+export const LOAD_EGERIA_IMPORT_SUCCESS = 'LOAD_EGERIA_IMPORT_SUCCESS';
+export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
+export const LOG_OUT = 'LOG_OUT';
