@@ -108,7 +108,7 @@ export class DataFromCSV extends React.Component {
             console.log(reader);
             console.log(reader.result);
 
-            csv.parse(reader.result, (err, data) => {
+            csv.parse(reader.result, {delimiter: ';'}, (err, data) => {
                 console.log(err);
                 console.log(data);
                 this.parseCSV(data)
