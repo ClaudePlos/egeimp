@@ -80,54 +80,7 @@ export class DataFromCSV extends React.Component {
                     name: 'Jason Maurer',
                     age: 23,
                 }}
-        ], columns:[]
-        };
-    }
-
-    handleFiles = files => {
-        var reader = new FileReader();
-        reader.onload = (upload) => {
-            // Use reader.result
-            //console.log(reader.result);
-            //alert(reader.result)
-
-            console.log(reader);
-            console.log(reader.result);
-
-            csv.parse(reader.result, (err, data) => {
-                console.log("!!!!!!!!!!!!!!!");
-                console.log(data);
-                this.parseCSV(data)
-            });
-        }
-        reader.readAsText(files[0]);
-    };
-
-
-    parseCSV(dataCVS) {
-
-
-        for (let i = 0; i < dataCVS.length; i++) {
-
-            if (i == 0) {
-                var headers=dataCVS[0].toString().split(";");
-                console.log(headers);
-                //https://gist.github.com/iwek/7154578
-            }
-
-        }
-
-        this.setState({dataSet:[ {name: 'Claude Plos',
-            age: 26,
-            friend: {
-                name: 'Klaud',
-                age: 36,
-            }}]})
-    };
-
-    render() {
-
-        const columns = [{
+        ], columns:[{
             Header: 'Name',
             accessor: 'name' // String-based value accessors!
         }, {
@@ -142,7 +95,68 @@ export class DataFromCSV extends React.Component {
             Header: props => <span>Friend Age</span>, // Custom header components!
             accessor: 'friend.age'
         }]
+        };
+    }
 
+    handleFiles = files => {
+        var reader = new FileReader();
+        reader.onload = (upload) => {
+            // Use reader.result
+            //console.log(reader.result);
+            //alert(reader.result)
+
+            console.log(reader);
+            console.log(reader.result);
+
+            csv.parse(reader.result, (err, data) => {
+                console.log(err);
+                console.log(data);
+                this.parseCSV(data)
+            });
+        }
+        reader.readAsText(files[0]);
+    };
+
+
+    parseCSV(dataCVS) {
+
+        var cell = [];
+        var rows = [];
+        var headers;
+
+        for (let i = 0; i < dataCVS.length; i++) {
+
+            if (i == 0) {
+                headers=dataCVS[0].toString().split(";");
+                //https://gist.github.com/iwek/7154578
+                for (let j = 0; j < headers.length; j++) {
+                    cell.push({ id:headers[j], Header:headers[j], accessor:headers[j] });
+                }
+
+            }
+
+            if ( i != 0 ) {
+                var row=dataCVS[i].toString().split(";");
+                var rowObject = {};
+                for (let j = 0; j < row.length; j++) {
+                    rowObject[headers[j]] = row[j] ;
+
+                    if ( j == headers.length-1 ){
+                        rows.push( rowObject );
+                    }
+
+                }
+            }
+        }
+
+        console.log("!!!!!!!!!!!!!!!");
+        console.log(rows);
+
+        this.setState({columns: cell })
+        this.setState({dataSet: rows })
+    };
+
+    render() {
         return (
             <div>
                 <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
@@ -151,7 +165,7 @@ export class DataFromCSV extends React.Component {
                 <ReactTable
                     //loading={products}
                     data={this.state.dataSet}
-                    columns={columns}
+                    columns={this.state.columns}
                     className="react-table -striped -highlight"
                     style={{ height: '100%' }}
                 />
