@@ -92,7 +92,7 @@ export class DataFromCSV extends React.Component {
             console.log(reader);
             console.log(reader.result);
 
-            csv.parse(reader.result, {delimiter: ';'}, (err, data) => {
+            csv.parse(reader.result, {delimiter: this.state.formatDelimeter}, (err, data) => {
                 console.log(err);
                 console.log("csv-parse");
                 console.log(data);
@@ -139,17 +139,23 @@ export class DataFromCSV extends React.Component {
         this.setState({dataSet: rows })
     };
 
-    updateInputValue(evt) {
+    updateFormatDelimeter(evt) {
         this.setState({
-            inputValue: evt.target.value
+            formatDelimeter: evt.target.value,
+        });
+    }
+
+    updateFormatCash(evt) {
+        this.setState({
+            formatCash: evt.target.value,
         });
     }
 
     render() {
         return (
             <div>
-                formatDelimeter: <input type="text" size="3" value={this.state.formatDelimeter} onChange={evt => this.updateInputValue(evt)}/>
-                formatCash: <input type="text" size="3" value={this.state.formatCash} onChange={evt => this.updateInputValue(evt)}/>
+                formatDelimeter: <input type="text" size="3" value={this.state.formatDelimeter} onChange={evt => this.updateFormatDelimeter(evt)}/>
+                formatCash: <input type="text" size="3" value={this.state.formatCash} onChange={evt => this.updateFormatCash(evt)}/>
                 <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
                     <button className='btn'>Upload</button>
                 </ReactFileReader>
