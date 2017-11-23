@@ -50,25 +50,7 @@ const range = len => {
     return arr;
 };
 
-const newPerson = () => {
-    return {
-        name: 'Tanner Linsley',
-        age: 26,
-        friend: {
-            name: 'Jason Maurer',
-            age2: 23,
-        }
-    };
-};
 
-function makeData( data ) {
-    return range().map(d => {
-        return {
-            ...newPerson(),
-            children: range(10).map(newPerson)
-        };
-    });
-}
 
 export class DataFromCSV extends React.Component {
     constructor(){
@@ -95,6 +77,8 @@ export class DataFromCSV extends React.Component {
             Header: props => <span>Friend Age</span>, // Custom header components!
             accessor: 'friend.age'
         }]
+            , formatDelimeter: ';'
+            , formatCash: ','
         };
     }
 
@@ -110,6 +94,7 @@ export class DataFromCSV extends React.Component {
 
             csv.parse(reader.result, {delimiter: ';'}, (err, data) => {
                 console.log(err);
+                console.log("csv-parse");
                 console.log(data);
                 this.parseCSV(data)
             });
@@ -127,16 +112,15 @@ export class DataFromCSV extends React.Component {
         for (let i = 0; i < dataCVS.length; i++) {
 
             if (i == 0) {
-                headers=dataCVS[0].toString().split(";");
+                headers=dataCVS[0];
                 //https://gist.github.com/iwek/7154578
                 for (let j = 0; j < headers.length; j++) {
                     cell.push({ id:headers[j], Header:headers[j], accessor:headers[j] });
                 }
-
             }
 
             if ( i != 0 ) {
-                var row=dataCVS[i].toString().split(";");
+                var row=dataCVS[i];
                 var rowObject = {};
                 for (let j = 0; j < row.length; j++) {
                     rowObject[headers[j]] = row[j] ;
@@ -144,7 +128,6 @@ export class DataFromCSV extends React.Component {
                     if ( j == headers.length-1 ){
                         rows.push( rowObject );
                     }
-
                 }
             }
         }
@@ -156,9 +139,17 @@ export class DataFromCSV extends React.Component {
         this.setState({dataSet: rows })
     };
 
+    updateInputValue(evt) {
+        this.setState({
+            inputValue: evt.target.value
+        });
+    }
+
     render() {
         return (
             <div>
+                formatDelimeter: <input type="text" size="3" value={this.state.formatDelimeter} onChange={evt => this.updateInputValue(evt)}/>
+                formatCash: <input type="text" size="3" value={this.state.formatCash} onChange={evt => this.updateInputValue(evt)}/>
                 <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
                     <button className='btn'>Upload</button>
                 </ReactFileReader>
@@ -169,12 +160,6 @@ export class DataFromCSV extends React.Component {
                     className="react-table -striped -highlight"
                     style={{ height: '100%' }}
                 />
-                <button onClick={function(){this.setState({dataSet:[ {name: 'Tanner Linsley',
-                    age: 26,
-                    friend: {
-                        name: 'Klaud',
-                        age: 36,
-                    }}]})}.bind(this)}>change-data</button>
             </div>
         );
     }
