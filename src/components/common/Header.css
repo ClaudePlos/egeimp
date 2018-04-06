@@ -1,0 +1,13 @@
+.navbar-default .icon-bar .navbar-nav{
+    background-color: black;
+    display: flex;
+}
+
+.nav-link {
+    display: block;
+    padding: .5em 1em;
+}
+
+.navbar-toggle{
+    display: block;
+}

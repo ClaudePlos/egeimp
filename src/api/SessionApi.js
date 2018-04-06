@@ -1,7 +1,8 @@
+var apiBaseUrl = "http://192.168.0.15:8080"; // https://i2.naprzod.pl
+
 class SessionApi {
     static login(credentials) {
-        //debugger;
-        var apiBaseUrl = "https://i2.naprzod.pl";
+        //debugger
         const request = new Request(apiBaseUrl + `/N1-Controlling-web/resources/login`, {
             method: 'POST',
             headers: new Headers({

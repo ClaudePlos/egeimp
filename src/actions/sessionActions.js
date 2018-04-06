@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import sessionApi from '../api/SessionApi';
+import egeriaApi from '../api/EgeriaApi';////
 import auth from '../auth/authenticator';
 import Alert from 'react-s-alert';
 
@@ -13,6 +14,7 @@ export function loginUser(credentials) {
 
             if (response.token) {
                 sessionStorage.setItem('jwt', response.token);
+                sessionStorage.setItem('dane', JSON.stringify(response));
                 dispatch(loginSuccess());
             } else {
                 Alert.error('Bad login or pass');
@@ -25,6 +27,23 @@ export function loginUser(credentials) {
     };
 }
 
+
+export function actUploadDataInvoiceMotozegToEgeria(data) {
+    return function(dispatch) {
+        return egeriaApi.uploadDataInvoiceMotozegToEgeria(data).then(response => {
+
+            if (response) {
+                Alert.error('OK');
+            } else {
+                Alert.error('Bad login or pass');
+            }
+
+        }).catch(error => {
+            debugger;
+            throw(error);
+        });
+    };
+}
 
 
 export function logOutUser() {

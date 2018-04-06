@@ -3,19 +3,23 @@ import Header from '../common/Header';
 import ReactFileReader from "react-file-reader";
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
-import csv from 'csv';
+//import csv from 'csv';
 import styles from './EgeriaImportPage.css';
+import * as egeriaActions from '../../actions/sessionActions';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
 const products = [];
 
 
 class EgeriaImportPage extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state ={
             status:false
         }
     }
+
     render() {
         return (
             <div>
@@ -53,9 +57,10 @@ const range = len => {
 
 
 export class DataFromCSV extends React.Component {
-    constructor(){
-        super();
-        this.state = {dataSet:[
+    constructor(props){
+        super(props);
+        this.state = {
+            dataSet:[
             {name: 'Tanner Linsley',
                 age: 26,
                 friend: {
@@ -80,6 +85,7 @@ export class DataFromCSV extends React.Component {
             , formatDelimeter: ';'
             , formatCash: ','
         };
+        this.onClickUploadDataToEgeria = this.onClickUploadDataToEgeria.bind(this);
     }
 
     handleFiles = files => {
@@ -92,12 +98,12 @@ export class DataFromCSV extends React.Component {
             console.log(reader);
             console.log(reader.result);
 
-            csv.parse(reader.result, {delimiter: this.state.formatDelimeter}, (err, data) => {
-                console.log(err);
-                console.log("csv-parse");
-                console.log(data);
-                this.parseCSV(data)
-            });
+            // csv.parse(reader.result, {delimiter: this.state.formatDelimeter}, (err, data) => {
+            //     console.log(err);
+            //     console.log("csv-parse");
+            //     console.log(data);
+            //     this.parseCSV(data)
+            // });
         }
         reader.readAsText(files[0]);
     };
@@ -151,14 +157,29 @@ export class DataFromCSV extends React.Component {
         });
     }
 
+    onClickUploadDataToEgeria(event) {
+        event.preventDefault();
+        console.log('Upload data to Egeria.');
+        const data = this.state.dataSet;
+        this.props.actions.actUploadDataInvoiceMotozegToEgeria(data);
+    }
+
     render() {
         return (
             <div>
                 formatDelimeter: <input type="text" size="3" value={this.state.formatDelimeter} onChange={evt => this.updateFormatDelimeter(evt)}/>
                 formatCash: <input type="text" size="3" value={this.state.formatCash} onChange={evt => this.updateFormatCash(evt)}/>
+                <div class="row">
                 <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
-                    <button className='btn'>Upload</button>
+                    <button className='btn'>Upload</button>->
                 </ReactFileReader>
+                    <input
+                        type="submit"
+                        value="Wgraj do Egerii"
+                        className="btn btn-primary"
+                        onClick={this.onClickUploadDataToEgeria}/>
+                </div>
+
                 <ReactTable
                     //loading={products}
                     data={this.state.dataSet}
@@ -171,6 +192,9 @@ export class DataFromCSV extends React.Component {
     }
 }
 
-
-
-export default EgeriaImportPage;
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(egeriaActions, dispatch)
+    };
+}
+export default connect(null, mapDispatchToProps)(EgeriaImportPage);

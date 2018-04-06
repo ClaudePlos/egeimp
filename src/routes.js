@@ -1,11 +1,28 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import {HashRouter, Link, Switch, Route, Redirect} from 'react-router-dom';
 import App from './components/App';
 import AboutPage from './components/about/AboutPage';
+import ContactIn from './components/contactIn/ContactIn';
 import HomePage from './components/home/HomePage';
+import Dashboard from './components/views/Dashboard/';
 import EgeriaImportPage from './components/egeriaimport/EgeriaImportPage';
 import LogInPage from './components/LogInPage.js';
 import auth from './auth/authenticator';
+import {createBrowserHistory} from 'history';
+import ReactDOM from 'react-dom';
+
+
+import { IndexRoute } from 'react-router';
+import Full from "./containers/Full/Full";
+import Sidebar from './components/Sidebar/Sidebar';
+
+/*
+
+        <Route path="/homepage" component={HomePage}/>
+        <Route path="/egeriaimport" component={EgeriaImportPage}/>
+        <Route path="/about" component={AboutPage} />
+
+ */
 
 export default (
     <Route path="/" component={App}>
@@ -13,6 +30,7 @@ export default (
         <Route path="/homepage" component={HomePage}/>
         <Route path="/egeriaimport" component={EgeriaImportPage}/>
         <Route path="/about" component={AboutPage} />
+        <Route path="/contact_in" component={ContactIn} />
     </Route>
 );
 
