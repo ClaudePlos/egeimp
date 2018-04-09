@@ -7,25 +7,36 @@ import {bindActionCreators} from 'redux';
 
 class ContactIn extends React.Component {
 
+
+
     constructor(props){
         super(props);
         this.state ={
-            status:false
+            status:false,
+            dataSet: []
         }
 
         this.onGet = this.onGet.bind(this);
 
         console.log('Get ContactIn 1.');
-        //this.onGet();
-        //self.getContactsInFromEgeria();
+
+        this.props.actions.getContactsIn();
+
+        this.setState({dataSet: null })
+
     }
 
     onGet(event) {
         event.preventDefault();
-        this.props.actions.getContactsIn();
+        console.log("!!!!!!!!!!!!!!");
+        console.log(this.state.dataSet);
     }
 
     render() {
+
+        const data = [{"name":"test1"},{"name":"test2"}];
+        //const data = this.props;
+
         return (
             <div>
                 <Header/>
@@ -34,6 +45,14 @@ class ContactIn extends React.Component {
                     <p>coming soon!</p>
                     <button onClick={this.onGet}>getContact</button>
                 </div>
+
+
+                <div>
+                    {data.map(function(d, idx){
+                        return (<li key={idx}>{d.employee}</li>)
+                    })}
+                </div>
+
             </div>
         );
     }
