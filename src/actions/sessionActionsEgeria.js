@@ -1,6 +1,14 @@
 import egeriaApi from '../api/EgeriaApi';
 import Alert from 'react-s-alert';
 
+
+// Initial
+const initialState = {
+    task: undefined,
+    myTasks: [],
+    allContacts: [{"id":"12", "employee":"test1"},{"id":"123", "employee":"test2"}],
+}
+
     export function actUploadDataInvoiceMotozegToEgeria(data) {
         return function (dispatch) {
             return egeriaApi.uploadDataInvoiceMotozegToEgeria(data).then(response => {
@@ -27,11 +35,19 @@ import Alert from 'react-s-alert';
 
                 console.log(response);
 
+                response.contacts = response;
+
+                dispatch(response);
+
                 if (response) {
                     Alert.error('OK');
                 } else {
                     Alert.error('Bad login or pass');
                 }
+
+
+
+                return response;
 
             }).catch(error => {
                 debugger;
@@ -39,3 +55,6 @@ import Alert from 'react-s-alert';
             });
         };
     }
+
+
+export const getAllContacts = state => state.allContacts;

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Header from '../common/Header';
-import PropTypes from 'prop-types';
+import { shape, arrayOf, PropTypes } from 'prop-types';
 import * as sessionActionsEge  from '../../actions/sessionActionsEgeria';
+import {getAllContacts} from '../../actions/sessionActionsEgeria';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
 
-class ContactIn extends React.Component {
+class ContactIn extends Component {
 
 
 
@@ -13,23 +14,37 @@ class ContactIn extends React.Component {
         super(props);
         this.state ={
             status:false,
-            dataSet: []
+            contacts: [{"id":"12", "employee":"test1"},{"id":"123", "employee":"test2"}]
         }
 
         this.onGet = this.onGet.bind(this);
 
         console.log('Get ContactIn 1.');
+    }
 
-        this.props.actions.getContactsIn();
-
-        this.setState({dataSet: null })
-
+    componentWillMount() {
+        console.log('ManagerTasksView will mount')
+        this.props.actions.getContactsIn()
+        //this.setState({contacts: this.props.contacts })
     }
 
     onGet(event) {
         event.preventDefault();
         console.log("!!!!!!!!!!!!!!");
-        console.log(this.state.dataSet);
+        this.props.actions.getContactsIn();
+        console.log(this.props.contacts);
+        console.log("!!!!!!!!!!!!!!State");
+        console.log(this.state);
+    }
+
+
+
+    createListItems(){
+        return this.state.contacts.map(( con ) => {
+            return (
+                <li key={con.id}> {con.employee} </li>
+            );
+        })
     }
 
     render() {
@@ -46,11 +61,30 @@ class ContactIn extends React.Component {
                     <button onClick={this.onGet}>getContact</button>
                 </div>
 
+                {/*{this.props.contacts}*/}
+
 
                 <div>
-                    {data.map(function(d, idx){
-                        return (<li key={idx}>{d.employee}</li>)
-                    })}
+
+                    <ul>
+                        {
+                            this.props.contacts &&
+                            this.props.contacts.map((post) =>{
+                                return(
+                                    <li>{post.employee}</li>
+                                )
+                            })
+                        }
+                    </ul>
+
+                    {/*<ul>*/}
+                        {/*{this.createListItems()}*/}
+                    {/*</ul>*/}
+
+
+                    {/*{data.map(function(d, idx){*/}
+                        {/*return (<li key={idx}>{d.employee}</li>)*/}
+                    {/*})}*/}
                 </div>
 
             </div>
@@ -60,12 +94,24 @@ class ContactIn extends React.Component {
 
 }
 
+
+
 ContactIn.propTypes = {
+    contacts: arrayOf(shape()).isRequired,
     actions: PropTypes.object.isRequired
 }
 
+ContactIn.defaultProps = {
+    contacts: []
+}
+
 function mapStateToProps(state, ownProps) {
-    return {logged_in: state.session};
+    console.log("xxxxxxxxxxxxxxxx");
+    console.log(state);
+    return {
+        logged_in: state.session,
+        contacts:  state.contacts //[{"id":"12", "employee":"test1"},{"id":"123", "employee":"test2"}]
+    };
 }
 
 function mapDispatchToProps(dispatch) {
