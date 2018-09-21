@@ -61,12 +61,12 @@ export class DataFromCSV extends React.Component {
         super(props);
         this.state = {
             dataSet:[
-            {name: 'Tanner Linsley',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                }}
+            // {name: 'Tanner Linsley',
+            //     age: 26,
+            //     friend: {
+            //         name: 'Jason Maurer',
+            //         age: 23,
+            //     }}
         ], columns:[{
             Header: 'Name',
             accessor: 'name' // String-based value accessors!
@@ -81,7 +81,7 @@ export class DataFromCSV extends React.Component {
         }, {
             Header: props => <span>Friend Age</span>, // Custom header components!
             accessor: 'friend.age'
-        }]
+        }], daneGotoweDoWyslaniaJSON:[]
             , formatDelimeter: ',' // może być ; lub ,
             , formatCash: '.' // can be . or ,
         };
@@ -139,9 +139,9 @@ export class DataFromCSV extends React.Component {
             }
         }
 
-        console.log("!!!!!!!!!!!!!!!");
-        console.log(rows);
-
+        console.log("parseCSV-l.142");
+        //console.log(rows);
+        this.setState({daneGotoweDoWyslaniaJSON: rows })
         this.setState({columns: cell })
         this.setState({dataSet: rows })
     };
@@ -161,8 +161,8 @@ export class DataFromCSV extends React.Component {
     onClickUploadDataToEgeria(event) {
         event.preventDefault();
         console.log('Upload data to Egeria.');
-        const data = this.state.dataSet;
-        this.props.actions.actUploadDataInvoiceMotozegToEgeria(data);
+        const dataJSON = this.state.daneGotoweDoWyslaniaJSON;
+        this.props.actions.actUploadDataInvoiceMotozegToEgeria(dataJSON);
     }
 
     render() {
