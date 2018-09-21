@@ -3,14 +3,14 @@ var apiBaseUrl = "http://192.168.0.15:8080";
 class EgeriaApi {
 
     static uploadDataInvoiceMotozegToEgeria(data) {
-
+         console.log("EgeriaApi.uploadDataInvoiceMotozegToEgeria:" + data )
         const request = new Request(apiBaseUrl + `/N1-Controlling-web/resources/egeria/ctl/api/test`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'token': window.sessionStorage.getItem("jwt")
             }),
-            body: JSON.stringify(data)
+            body: JSON.stringify()
         });
 
 

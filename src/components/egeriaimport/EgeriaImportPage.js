@@ -3,9 +3,9 @@ import Header from '../common/Header';
 import ReactFileReader from "react-file-reader";
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
-//import csv from 'csv';
+import csv from 'csv';
 import styles from './EgeriaImportPage.css';
-import * as egeriaActions from '../../actions/sessionActions';
+import * as egeriaActions from '../../actions/sessionActionsEgeria';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
@@ -82,8 +82,8 @@ export class DataFromCSV extends React.Component {
             Header: props => <span>Friend Age</span>, // Custom header components!
             accessor: 'friend.age'
         }]
-            , formatDelimeter: ';'
-            , formatCash: ','
+            , formatDelimeter: ',' // może być ; lub ,
+            , formatCash: '.' // can be . or ,
         };
         this.onClickUploadDataToEgeria = this.onClickUploadDataToEgeria.bind(this);
     }
@@ -98,12 +98,13 @@ export class DataFromCSV extends React.Component {
             console.log(reader);
             console.log(reader.result);
 
-            // csv.parse(reader.result, {delimiter: this.state.formatDelimeter}, (err, data) => {
-            //     console.log(err);
-            //     console.log("csv-parse");
-            //     console.log(data);
-            //     this.parseCSV(data)
-            // });
+            csv.parse(reader.result, {delimiter: this.state.formatDelimeter}, (err, data) => {
+                console.log(err);
+                console.log("csv-parse");
+                console.log(data);
+                this.parseCSV(data)
+            });
+
         }
         reader.readAsText(files[0]);
     };
@@ -197,4 +198,4 @@ function mapDispatchToProps(dispatch) {
         actions: bindActionCreators(egeriaActions, dispatch)
     };
 }
-export default connect(null, mapDispatchToProps)(EgeriaImportPage);
+export default connect(null, mapDispatchToProps)(DataFromCSV, EgeriaImportPage);

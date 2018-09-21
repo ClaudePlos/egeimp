@@ -37,7 +37,7 @@ const initialState = {
 
                 response.contacts = response;
 
-                dispatch(response);
+                dispatch(response);getContactsIn
 
                 if (response) {
                     Alert.error('OK');
