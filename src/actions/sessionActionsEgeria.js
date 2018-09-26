@@ -14,7 +14,19 @@ const initialState = {
             return egeriaApi.uploadDataInvoiceMotozegToEgeria(data).then(response => {
 
                 if (response) {
-                    Alert.error('OK');
+
+                    //Return check
+                    console.log(response);
+
+                    if (response == "OK"){
+                        Alert.success('OK' + response);
+                    } else {
+                        Alert.error('W Egerii w CKK > Kontrahenci brak wprowadzonych klientów dla nip: ' + response, {
+                            timeout: 60000
+                        });
+                    }
+
+
                 } else {
                     Alert.error('Bad login or pass');
                 }

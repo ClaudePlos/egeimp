@@ -11,13 +11,13 @@ class EgeriaApi {
                 'Content-Type': 'application/json',
                 'token': window.sessionStorage.getItem("jwt")
             }),
-            body: JSON.stringify(data) // "{name: 'Tanner Linsley',age: 26,friend: {name: 'Jason Maurer',age: 23, }}"
+            body: JSON.stringify(data) //
         });
 
 
         return fetch(request).then(response => {
             console.log(response);
-            return response.json();
+            return response.text();
         }).catch(error => {
             return error;
         });

@@ -61,10 +61,10 @@ export class DataFromCSV extends React.Component {
         super(props);
         this.state = {
             dataSet:[
-            // {name: 'Tanner Linsley',
+            // {name: 'Tanner Linsley łś',
             //     age: 26,
             //     friend: {
-            //         name: 'Jason Maurer',
+            //         name: 'Jason Maurer śćł',
             //         age: 23,
             //     }}
         ], columns:[{
@@ -88,8 +88,9 @@ export class DataFromCSV extends React.Component {
         this.onClickUploadDataToEgeria = this.onClickUploadDataToEgeria.bind(this);
     }
 
-    handleFiles = files => {
-        var reader = new FileReader();
+    handleFiles = files =>  {
+        let reader = new FileReader();
+
         reader.onload = (upload) => {
             // Use reader.result
             //console.log(reader.result);
@@ -97,6 +98,7 @@ export class DataFromCSV extends React.Component {
 
             console.log(reader);
             console.log(reader.result);
+
 
             csv.parse(reader.result, {delimiter: this.state.formatDelimeter}, (err, data) => {
                 console.log(err);
@@ -106,7 +108,7 @@ export class DataFromCSV extends React.Component {
             });
 
         }
-        reader.readAsText(files[0]);
+        reader.readAsText(files[0], 'Windows-1250'); // kodowanie znakow wazne !!!
     };
 
 
@@ -176,7 +178,7 @@ export class DataFromCSV extends React.Component {
                 </ReactFileReader>
                     <input
                         type="submit"
-                        value="Wgraj do Egerii"
+                        value="Wgraj do Egerii śćł"
                         className="btn btn-primary"
                         onClick={this.onClickUploadDataToEgeria}/>
                 </div>
@@ -187,6 +189,7 @@ export class DataFromCSV extends React.Component {
                     columns={this.state.columns}
                     className="react-table -striped -highlight"
                     style={{ height: '100%' }}
+                    charset="utf-8"
                 />
             </div>
         );
