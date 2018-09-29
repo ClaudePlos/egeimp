@@ -178,7 +178,7 @@ export class DataFromCSV extends React.Component {
                 </ReactFileReader>
                     <input
                         type="submit"
-                        value="Wgraj do Egerii śćł"
+                        value="Wgraj do Egerii"
                         className="btn btn-primary"
                         onClick={this.onClickUploadDataToEgeria}/>
                 </div>
