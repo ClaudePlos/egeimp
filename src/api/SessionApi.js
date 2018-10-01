@@ -1,4 +1,5 @@
 var apiBaseUrl = "http://192.168.0.15:8080"; // https://i2.naprzod.pl
+//var apiBaseUrl = "https://i2.naprzod.pl";
 
 class SessionApi {
     static login(credentials) {

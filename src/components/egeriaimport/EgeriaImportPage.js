@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../common/Header';
-import ReactFileReader from "react-file-reader";
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
 import csv from 'csv';
@@ -8,6 +7,7 @@ import styles from './EgeriaImportPage.css';
 import * as egeriaActions from '../../actions/sessionActionsEgeria';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 const products = [];
 
@@ -86,31 +86,13 @@ export class DataFromCSV extends React.Component {
             , formatCash: '.' // can be . or ,
         };
         this.onClickUploadDataToEgeria = this.onClickUploadDataToEgeria.bind(this);
+
+
+
+        this.handleClick = this.handleClick.bind(this);
+        this.inputFileChanged = this.inputFileChanged.bind(this);
+
     }
-
-    handleFiles = files =>  {
-        let reader = new FileReader();
-
-        reader.onload = (upload) => {
-            // Use reader.result
-            //console.log(reader.result);
-            //alert(reader.result)
-
-            console.log(reader);
-            console.log(reader.result);
-
-
-            csv.parse(reader.result, {delimiter: this.state.formatDelimeter}, (err, data) => {
-                console.log(err);
-                console.log("csv-parse");
-                console.log(data);
-                this.parseCSV(data)
-            });
-
-        }
-        reader.readAsText(files[0], 'Windows-1250'); // kodowanie znakow wazne !!!
-    };
-
 
     parseCSV(dataCVS) {
 
@@ -167,20 +149,54 @@ export class DataFromCSV extends React.Component {
         this.props.actions.actUploadDataInvoiceMotozegToEgeria(dataJSON);
     }
 
+
+    handleClick(){
+
+        let input = this.refs.input_reader;
+        input.click();
+    };
+
+    inputFileChanged(e){
+        if(window.FileReader){
+            let file = e.target.files[0], reader = new FileReader(), self = this;
+            reader.onload = function(r){
+
+                csv.parse(reader.result, {delimiter: self.state.formatDelimeter}, (err, data) => {
+                    console.log(err);
+                    console.log("csv-parse");
+                    console.log(data);
+                    self.parseCSV(data)
+                });
+
+            }
+            //reader.readAsDataURL(file);
+            reader.readAsText(file, 'Windows-1250'); // kodowanie znakow wazne !!!
+        }
+        else {
+            alert('Soryy, your browser does\'nt support for preview');
+        }
+    }
+
+
     render() {
+        const { accept, capture, multiple } = this.props, { src, value } = this.state;
         return (
+
             <div>
                 formatDelimeter: <input type="text" size="3" value={this.state.formatDelimeter} onChange={evt => this.updateFormatDelimeter(evt)}/>
                 formatCash: <input type="text" size="3" value={this.state.formatCash} onChange={evt => this.updateFormatCash(evt)}/>
+
                 <div class="row">
-                <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
-                    <button className='btn'>Upload</button>->
-                </ReactFileReader>
+
+                    <button onClick={this.handleClick}>Upload</button>
+                    <input type="file" ref="input_reader" accept={Array.isArray(accept) ? accept.join(',') : accept} multiple={multiple} capture={capture} style={{display:'none'}} onChange={this.inputFileChanged}/>
+
                     <input
                         type="submit"
                         value="Wgraj do Egerii"
                         className="btn btn-primary"
                         onClick={this.onClickUploadDataToEgeria}/>
+
                 </div>
 
                 <ReactTable
@@ -194,6 +210,20 @@ export class DataFromCSV extends React.Component {
             </div>
         );
     }
+}
+
+DataFromCSV.defaultProps = {
+    accept: '.csv',
+    capture: true,
+    multiple: false
+}
+DataFromCSV.propTypes = {
+    accept: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
+    ]),
+    capture: PropTypes.bool,
+    multiple: PropTypes.bool
 }
 
 function mapDispatchToProps(dispatch) {

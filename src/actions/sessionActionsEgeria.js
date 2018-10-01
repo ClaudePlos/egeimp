@@ -18,7 +18,7 @@ const initialState = {
                     //Return check
                     console.log(response);
 
-                    if (response == "OK"){
+                    if (response === "OK"){
                         Alert.success('OK' + response);
                     } else {
                         Alert.error('W Egerii w CKK > Kontrahenci brak wprowadzonych klientów dla nip: ' + response, {
