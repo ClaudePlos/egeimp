@@ -1,5 +1,5 @@
-var apiBaseUrl = "http://192.168.0.15:8080";
-//var apiBaseUrl = "https://i2.naprzod.pl";
+//var apiBaseUrl = "http://192.168.0.15:8080";
+var apiBaseUrl = "https://i2.naprzod.pl";
 class EgeriaApi {
 
     static uploadDataInvoiceMotozegToEgeria(data) {

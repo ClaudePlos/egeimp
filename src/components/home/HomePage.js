@@ -1,9 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import Header from '../common/Header';
-import Sidebar from '../Sidebar/Sidebar';
 import {Container, Button, Row, Col, Jumbotron } from 'reactstrap';
-import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
 class HomePage extends React.Component {
     render() {

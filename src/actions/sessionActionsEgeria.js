@@ -3,11 +3,7 @@ import Alert from 'react-s-alert';
 
 
 // Initial
-const initialState = {
-    task: undefined,
-    myTasks: [],
-    allContacts: [{"id":"12", "employee":"test1"},{"id":"123", "employee":"test2"}],
-}
+
 
     export function actUploadDataInvoiceMotozegToEgeria(data) {
         return function (dispatch) {

@@ -1,6 +1,5 @@
 import * as types from '../actions/actionTypes';
 import initialState from './initialState';
-import {browserHistory} from 'react-router';
 
 export default function egeriaimportReducer(state = initialState.egeriaimport, action) {
     // state variable here reps just an array of courses
