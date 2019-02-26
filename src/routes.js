@@ -3,6 +3,7 @@ import {HashRouter, Link, Switch, Route, Redirect} from 'react-router-dom';
 import App from './components/App';
 import AboutPage from './components/about/AboutPage';
 import ContactIn from './components/contactIn/ContactIn';
+import MoFront from './components/MapiOrders/MoFront';
 import HomePage from './components/home/HomePage';
 import Dashboard from './components/views/Dashboard/';
 import EgeriaImportPage from './components/egeriaimport/EgeriaImportPage';
@@ -31,6 +32,7 @@ export default (
         <Route path="/egeriaimport" component={EgeriaImportPage}/>
         <Route path="/about" component={AboutPage} />
         <Route path="/contact_in" component={ContactIn} />
+        <Route path="/mapi_orders" component={MoFront} />
     </Route>
 );
 

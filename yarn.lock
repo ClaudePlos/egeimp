@@ -123,6 +123,18 @@ acorn@^5.5.0:
   version "5.7.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
 
+ag-grid-community@^20.1.0:
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-20.1.0.tgz#38c11aaaf7418dc33627d7e67e00de3ba99786a8"
+  integrity sha512-58JQj2n/2NvqStDO0aNEEUUvc1ziRcEhi1NY+AYzsADzA0snrn228D4ea974JYjxbqy4cqFsqn9hDX11aInIfg==
+
+ag-grid-react@^20.1.0:
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/ag-grid-react/-/ag-grid-react-20.1.0.tgz#3a25265f793347e29a60b1284bf47c37389a4001"
+  integrity sha512-hwxxJLWcLyrp5sSjfDl9aYCZ0tr6hCcdVgYsqTSiO955c8BwR3VRZxmKL0DqujZEnHVgx3kBiBSVyjBVQVmtog==
+  dependencies:
+    prop-types "^15.6.2"
+
 ajv-keywords@^1.0.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
