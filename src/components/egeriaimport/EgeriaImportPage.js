@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../common/Header';
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
-import csv from 'csv';
+import csv from 'csv/lib/es5';
 import styles from './EgeriaImportPage.css';
 import * as egeriaActions from '../../actions/sessionActionsEgeria';
 import {bindActionCreators} from 'redux';
