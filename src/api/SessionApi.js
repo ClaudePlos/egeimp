@@ -1,10 +1,9 @@
-//var apiBaseUrl = "http://192.168.0.15:8080";
-var apiBaseUrl = "https://i2.naprzod.pl";
-//var apiBaseUrl = "http://192.168.0.19:8181";
+import * as urlMain from './urlMain';
+
 class SessionApi {
     static login(credentials) {
         //debugger
-        const request = new Request(apiBaseUrl + `/N1-Controlling-web/resources/login`, {
+        const request = new Request( urlMain.API_BASE_URL + `/N1-Controlling-web/resources/login`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json'

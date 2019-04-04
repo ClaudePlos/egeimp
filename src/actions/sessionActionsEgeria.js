@@ -64,7 +64,7 @@ import Alert from 'react-s-alert';
 
     export function actUploadDataInvoicesFromSoftraToEgeria(data) {
         return function (dispatch) {
-            return egeriaApi.uploadDataInvoiceMotozegToEgeria(data).then(response => {
+            return egeriaApi.uploadDataInvoicesFromSoftraToEgeria(data).then(response => {
 
                 if (response) {
 

@@ -1,12 +1,11 @@
-//var apiBaseUrl = "http://192.168.0.15:8080";
-var apiBaseUrl = "https://i2.naprzod.pl";
-//var apiBaseUrl = "http://192.168.0.19:8181";
+import * as urlMain from './urlMain';
+
 class EgeriaApi {
 
     static uploadDataInvoiceMotozegToEgeria(data) {
         console.log("EgeriaApi.uploadDataInvoiceMotozegToEgeria:");
         console.log(data);
-        const request = new Request(apiBaseUrl + `/N1-Controlling-web/resources/egeria/ctl/api/wgrajFaktureMotozeg`, {
+        const request = new Request(urlMain.API_BASE_URL + `/N1-Controlling-web/resources/egeria/ctl/api/wgrajFaktureMotozeg`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -25,7 +24,7 @@ class EgeriaApi {
     }
 
     static getContactInApi() {
-        const request = new Request(apiBaseUrl + `/N1-Controlling-web/resources/egeria/ctl/api/contact_in`, {
+        const request = new Request(urlMain.API_BASE_URL + `/N1-Controlling-web/resources/egeria/ctl/api/contact_in`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -45,7 +44,7 @@ class EgeriaApi {
     static uploadDataInvoicesFromSoftraToEgeria(data) {
         console.log("EgeriaApi.uploadDataInvoicesFromSoftraToEgeria:");
         console.log(data);
-        const request = new Request(apiBaseUrl + `/N1-Controlling-web/resources/egeria/ctl/api/uploadInvoicesFromSoftraToEgeria`, {
+        const request = new Request(urlMain.API_BASE_URL + `/N1-Controlling-web/resources/egeria/ctl/api/uploadInvoicesFromSoftraToEgeria`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json',
