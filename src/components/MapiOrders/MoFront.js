@@ -62,13 +62,29 @@ class MoFront extends Component {
                 {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
                 {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
                 {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
+                {lp: "2", nameDiet: "Mondeo", s: 32, s2: 35},
                 {lp: "3", nameDiet: "Boxter", s: 72, s2: 35}
             ]
         }
     }
-
-
-
 
     render() {
 
@@ -119,7 +135,7 @@ class MoFront extends Component {
                     </div>
 
 
-                    <div className="ag-theme-balham" style={{ height: '100%', width: '100%' }}>
+                    <div className="ag-theme-balham" style={{ height: '100%', width: '100%', marginBottom: '20px', marginTop: '20px' }}>
                         <AgGridReact
                             rowData={this.state.rowData}>
                             <AgGridColumn headerName="LP" field="lp" width={55} filter="text" sortable resizable></AgGridColumn>

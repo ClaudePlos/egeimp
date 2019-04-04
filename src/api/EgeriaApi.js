@@ -42,6 +42,29 @@ class EgeriaApi {
         });
     }
 
+    static uploadDataInvoicesFromSoftraToEgeria(data) {
+        console.log("EgeriaApi.uploadDataInvoicesFromSoftraToEgeria:");
+        console.log(data);
+        const request = new Request(apiBaseUrl + `/N1-Controlling-web/resources/egeria/ctl/api/uploadInvoicesFromSoftraToEgeria`, {
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'token': window.sessionStorage.getItem("jwt")
+            }),
+            body: JSON.stringify(data) //
+        });
+
+
+        return fetch(request).then(response => {
+            console.log(response);
+            return response.text();
+        }).catch(error => {
+            return error;
+        });
+    }
+
 }
+
+
 
 export default EgeriaApi;

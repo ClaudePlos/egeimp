@@ -56,7 +56,7 @@ class Header extends React.Component {
                                     </DropdownToggle>
                                     <DropdownMenu >
                                         <DropdownItem tag={Link} to="/egeriaimport">import Diag. </DropdownItem>
-                                        <DropdownItem tag={Link} to="/egeriaimport">import Paliwo </DropdownItem>
+                                        <DropdownItem tag={Link} to="/triomed_imp_invoices">import Triomed Faktury</DropdownItem>
                                         <DropdownItem divider />
                                         <DropdownItem>
                                             Reset

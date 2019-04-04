@@ -7,6 +7,7 @@ import MoFront from './components/MapiOrders/MoFront';
 import HomePage from './components/home/HomePage';
 import Dashboard from './components/views/Dashboard/';
 import EgeriaImportPage from './components/egeriaimport/EgeriaImportPage';
+import TriomedImpInvoicesPage from './components/triomed_imp_invoices/TriomedImpInvoicePage';
 import LogInPage from './components/LogInPage.js';
 import auth from './auth/authenticator';
 import {createBrowserHistory} from 'history';
@@ -30,6 +31,7 @@ export default (
         <IndexRoute component={LogInPage} />
         <Route path="/homepage" component={HomePage}/>
         <Route path="/egeriaimport" component={EgeriaImportPage}/>
+        <Route path="/triomed_imp_invoices" component={TriomedImpInvoicesPage}/>
         <Route path="/about" component={AboutPage} />
         <Route path="/contact_in" component={ContactIn} />
         <Route path="/mapi_orders" component={MoFront} />
