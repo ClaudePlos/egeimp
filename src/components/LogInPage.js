@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as sessionActions from '../actions/sessionActions';
 import styles from './LogInPage.css';
+import logo from './img/logo300px.jpg';
 
 class LogInPage extends React.Component {
     constructor(props) {
@@ -29,6 +30,7 @@ class LogInPage extends React.Component {
         return (
             <div className="login-page">
                 <div className="form">
+                    <img src={logo} /><br></br>
                     <form className="register-form">
                         <TextInput
                             name="uzNazwa"
@@ -53,7 +55,7 @@ class LogInPage extends React.Component {
                     </form>
                 </div>
                 <center>
-                <img  src="https://user-images.githubusercontent.com/6311412/32380989-dddaff0a-c0b1-11e7-8277-9868a4d2c901.png" />
+                {/*<img  src="https://user-images.githubusercontent.com/6311412/32380989-dddaff0a-c0b1-11e7-8277-9868a4d2c901.png" />*/}
                 </center>
             </div>
         );

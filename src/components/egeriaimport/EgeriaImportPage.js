@@ -8,6 +8,7 @@ import * as egeriaActions from '../../actions/sessionActionsEgeria';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {Container, Button, Row, Col, Jumbotron } from 'reactstrap';
 
 const products = [];
 
@@ -21,12 +22,7 @@ class EgeriaImportPage extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <Header/>
-                <DataFromCSV/>
-            </div>
-        );
+
     }
 
 }
@@ -181,14 +177,17 @@ export class DataFromCSV extends React.Component {
     render() {
         const { accept, capture, multiple } = this.props, { src, value } = this.state;
         return (
-
             <div>
-                formatDelimeter: <input type="text" size="3" value={this.state.formatDelimeter} onChange={evt => this.updateFormatDelimeter(evt)}/>
-                formatCash: <input type="text" size="3" value={this.state.formatCash} onChange={evt => this.updateFormatCash(evt)}/>
+                <Header/><br></br>
 
-                <div class="row">
-
-                    <button onClick={this.handleClick}>Upload</button>
+                <div className="offset-0">
+                <div>
+                    format rozdzielania csv: <input type="text" size="3" value={this.state.formatDelimeter} onChange={evt => this.updateFormatDelimeter(evt)}/>
+                    &nbsp;
+                    format dla kwoty: <input type="text" size="3" value={this.state.formatCash} onChange={evt => this.updateFormatCash(evt)}/>
+                    &nbsp;
+                    <button type="button"  class="btn btn-primary" onClick={this.handleClick}>Pobierz csv</button>
+                    &nbsp;
                     <input type="file" ref="input_reader" accept={Array.isArray(accept) ? accept.join(',') : accept} multiple={multiple} capture={capture} style={{display:'none'}} onChange={this.inputFileChanged}/>
 
                     <input
@@ -198,7 +197,7 @@ export class DataFromCSV extends React.Component {
                         onClick={this.onClickUploadDataToEgeria}/>
 
                 </div>
-
+                <div>
                 <ReactTable
                     //loading={products}
                     data={this.state.dataSet}
@@ -207,6 +206,9 @@ export class DataFromCSV extends React.Component {
                     style={{ height: '100%' }}
                     charset="utf-8"
                 />
+                </div>
+                </div>
+
             </div>
         );
     }

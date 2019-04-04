@@ -84,7 +84,7 @@ export class DataFromCSV extends React.Component {
             Header: props => <span>Friend Age</span>, // Custom header components!
             accessor: 'friend.age'
         }], daneGotoweDoWyslaniaJSON:[]
-            , formatDelimeter: ',' // może być ; lub ,
+            , formatDelimeter: ';' // może być ; lub ,
             , formatCash: '.' // can be . or ,
         };
         this.onClickUploadDataToEgeria = this.onClickUploadDataToEgeria.bind(this);

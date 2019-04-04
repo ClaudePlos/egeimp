@@ -8,18 +8,23 @@ class HomePage extends React.Component {
         return (
             <div>
                 <Header/>
-                <div className="jumbotron">
-                    <h1>Home Page</h1>
-                    <p>the best way manage</p>
-                    <Link to="/" className="btn btn-primary btn-lg">log in as a test user</Link>
-                    <Button color="danger">Danger!</Button>
-                </div>
+                <div>
+                <Jumbotron fluid>
+                <Container fluid>
+                    <div className="jumbotron">
+                        <h1>Home Page</h1>
+                        <p>Task TODO:</p>
+                        <Link to="/" className="btn btn-primary btn-lg">log in</Link>
+                        <Button color="danger">Danger!</Button>
+                    </div>
+                </Container>
+                </Jumbotron>
 
-                <Jumbotron>
-                    <Container>
+                <Jumbotron fluid>
+                    <Container fluid>
                         <Row>
                             <Col>
-                                <h1>Welcome to React</h1>
+                                <h1>Naprzod</h1>
                                 <p>
                                     <Button
                                         tag="a"
@@ -28,13 +33,14 @@ class HomePage extends React.Component {
                                         href="http://reactstrap.github.io"
                                         target="_blank"
                                     >
-                                        View Reactstrap Docs
+                                        View Docs
                                     </Button>
                                 </p>
                             </Col>
                         </Row>
                     </Container>
                 </Jumbotron>
+                </div>
 
             </div>
         );

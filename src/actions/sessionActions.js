@@ -11,7 +11,7 @@ export function loginSuccess() {
 export function loginUser(credentials) {
     return function(dispatch) {
         return sessionApi.login(credentials).then(response => {
-
+            console.log(response.token);
             if (response.token) {
                 sessionStorage.setItem('jwt', response.token);
                 sessionStorage.setItem('dane', JSON.stringify(response));
@@ -21,7 +21,7 @@ export function loginUser(credentials) {
             }
 
         }).catch(error => {
-            debugger;
+            Alert.error('Bad login or pass');
             throw(error);
         });
     };
